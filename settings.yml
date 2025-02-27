@@ -1,0 +1,16 @@
+---
+strategy: static
+no_screen_padding: 'no'
+dark_mode: 'no'
+static_data: ''
+polling_verb: get
+polling_url: ''
+polling_headers: ''
+custom_fields:
+- keyname: birth_date
+  field_type: date
+  placeholder: '1976-04-11'
+  name: Birth date
+  description: Provide your birth date
+name: Your Life in Weeks
+refresh_interval: 1440

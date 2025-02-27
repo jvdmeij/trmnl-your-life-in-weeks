@@ -1,0 +1,39 @@
+{% assign birth_date = trmnl.plugin_settings.custom_fields_values.birth_date | date: '%s' %}
+{% assign current_date = 'now' | date: '%s' %}
+{% assign weeks_lived = current_date | minus: birth_date | divided_by: 604800 %}
+
+{% assign weeks_per_row = 52 %}
+{% assign weeks_per_row = 78 %}
+{% assign weeks_per_row = 104 %}
+{% assign weeks_per_row = 156 %}
+{% assign weeks_per_row = 208 %}
+{% assign weeks_per_row = 156 %}
+
+<style>
+  .life-weeks {
+    display: grid;
+    grid-template-columns: repeat({{ weeks_per_row }}, 1fr);
+    gap: 2px;
+    width: 100%;
+  }
+  
+  .week {
+    aspect-ratio: 1;
+    background-color: #ccc;
+  }
+  
+  .week.lived {
+    background-color: black;
+  }
+</style>
+
+<div class="layout layout--col">
+  <div class="title title--small">
+    You have lived {{ weeks_lived | number_with_delimiter }} weeks of 4,680 ({{ weeks_lived | times: 100.0 | divided_by: 4680 | round: 1 }}%)
+  </div>
+  <div class="life-weeks">
+    {% for week in (1..4680) %}
+      <div class="week {% if week <= weeks_lived %}lived{% endif %}"></div>
+    {% endfor %}
+  </div>
+</div>
