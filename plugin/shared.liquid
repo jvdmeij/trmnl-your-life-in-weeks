@@ -1,0 +1,45 @@
+{% template main %}
+{% assign birth_date = trmnl.plugin_settings.custom_fields_values.birth_date | date: '%s' %}
+{% assign current_date = 'now' | date: '%s' %}
+{% assign weeks_lived = current_date | minus: birth_date | divided_by: 604800 %}
+
+{% assign we eks_per_row = 52 %}
+{% assign we eks_per_row = 104 %}
+{% assign we eks_per_row = 156 %}
+{% assign we eks_per_row = 208 %}
+{% assign we eks_per_row = 104 %}
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@3.30.0/dist/tabler-icons.min.css" />
+
+<style>
+  .life-weeks {
+    display: grid;
+    grid-template-columns: repeat({{ weeks_per_row }}, 1fr);
+    gap: {{ gap }}px;
+  }
+  
+  .week {
+    aspect-ratio: 1;
+  }
+</style>
+
+<div class="layout layout--col">
+  <div class="title {{ title_size }}">
+    You have lived {{ weeks_lived | number_with_delimiter }} weeks of 4,680 ({{ weeks_lived | times: 100.0 | divided_by: 4680 | round: 1 |  }}%)
+  </div>
+  <div class="life-weeks w--full h--full">
+    {% for week in (1..4680) %}
+      <div class="week bg--{% if week <= weeks_lived %}black{% else %}gray-50{% endif %}"></div>
+    {% endfor %}
+  </div>
+</div>
+
+<div class="title_bar">
+  <i class="ti ti-clock-2"></i>
+  <span class="title">Your Life in Weeks</span>
+</div>
+
+<script type="text/javascript">
+  document.querySelector('.layout').dataset.timestamp = Date.now();
+</script>
+{% endtemplate %}

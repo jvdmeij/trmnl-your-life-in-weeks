@@ -1,0 +1,24 @@
+---
+strategy: static
+no_screen_padding: 'no'
+dark_mode: 'no'
+static_data: ''
+polling_verb: get
+polling_url: ''
+polling_headers: ''
+polling_body: ''
+id: 22415
+custom_fields:
+- keyname: birth_date
+  field_type: date
+  placeholder: '1976-04-11'
+  name: Birth date
+  description: Provide your birth date
+- keyname: author_bio
+  name: About This Plugin
+  field_type: author_bio
+  category: personal,kpi
+  description: A visual representation of the amount of weeks of your life! Created by Jasper, @jasper on TRMNL Discord.
+  email_address: info@jaspervandermeij.com
+name: Your Life in Weeks
+refresh_interval: 1440
